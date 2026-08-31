@@ -1,5 +1,4 @@
-from src.calculator import add, subtract
-
+from src.calculator import add, subtract, multiply
 
 def test_add_two_positive_numbers():
     result = add(2, 3)
@@ -36,3 +35,13 @@ def test_subtract_to_zero():
 
     assert result == 0
 
+def test_multiply_two_positive_numbers():
+    result = multiply(3, 4)
+
+    assert result == 12
+
+
+def test_multiply_by_zero():
+    result = multiply(10, 0)
+
+    assert result == 0
