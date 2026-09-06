@@ -8,55 +8,54 @@ def positive_numbers():
     return 3, 4
 
 
-def test_add_returns_sum_of_two_positive_numbers(positive_numbers):
-    first_number, second_number = positive_numbers
-
+@pytest.mark.parametrize(
+    "first_number, second_number, expected",
+    [
+        (2, 3, 5),
+        (-2, -3, -5),
+        (10, 0, 10),
+        (3, 4, 7),
+    ],
+)
+def test_add_returns_expected_sum(first_number, second_number, expected):
     result = add(first_number, second_number)
 
-    assert result == 7
+    assert result == expected
 
 
-def test_add_returns_sum_of_two_negative_numbers():
-    result = add(-2, -3)
+@pytest.mark.parametrize(
+    "first_number, second_number, expected",
+    [
+        (10, 4, 6),
+        (-10, -4, -6),
+        (10, 10, 0),
+    ],
+)
+def test_subtract_returns_expected_difference(first_number, second_number, expected):
+    result = subtract(first_number, second_number)
 
-    assert result == -5
-
-
-def test_add_returns_same_number_when_adding_zero():
-    result = add(10, 0)
-
-    assert result == 10
-
-
-def test_subtract_returns_difference_of_two_positive_numbers():
-    result = subtract(10, 4)
-
-    assert result == 6
+    assert result == expected
 
 
-def test_subtract_returns_difference_of_two_negative_numbers():
-    result = subtract(-10, -4)
+@pytest.mark.parametrize(
+    "first_number, second_number, expected",
+    [
+        (3, 4, 12),
+        (10, 0, 0),
+        (-2, 3, -6),
+    ],
+)
+def test_multiply_returns_expected_product(first_number, second_number, expected):
+    result = multiply(first_number, second_number)
 
-    assert result == -6
+    assert result == expected
 
 
-def test_subtract_returns_zero_when_numbers_are_equal():
-    result = subtract(10, 10)
-
-    assert result == 0
-
-
-def test_multiply_returns_product_of_two_positive_numbers(positive_numbers):
+def test_multiply_returns_product_of_positive_numbers_from_fixture(positive_numbers):
     first_number, second_number = positive_numbers
 
     result = multiply(first_number, second_number)
 
     assert result == 12
-
-
-def test_multiply_returns_zero_when_multiplying_by_zero():
-    result = multiply(10, 0)
-
-    assert result == 0
 
 
