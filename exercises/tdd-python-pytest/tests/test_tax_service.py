@@ -8,3 +8,5 @@ def test_calculate_total_with_tax_uses_mocked_tax_rate():
     result = calculate_total_with_tax(100, "IE", fake_get_tax_rate)
 
     assert result == 123.0
+
+
